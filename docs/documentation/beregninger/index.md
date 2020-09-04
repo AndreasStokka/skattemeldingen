@@ -6,42 +6,44 @@ description: ""
 
 # Næringsberegninger
 
-Denne seksjonen beskriver de beregningene som vi gjør på dokumentet med næringsopplysninger. Det er disse beregnignene som Skatteetaten kjører når et dokument
-med næringsopplysninger blir mottatt. Beregningene blir fra Skatteetatens side benyttet for å sjekke at dokumentet er korrekt utfylt, og at alle verdierne
-er i henhold til de beregningene som Skatteetaten har spesifisert. Er det mangler eller avvik i de beregnede verdiene å vil valideringstjensten bygge opp et valideringsresulat som
-sier noe om hva som mangler i det beregnede grunnlaget, men ikke nødvendigvis referere til hvilken beregning som er berørt, den vil kun referere til de beregnede verdiene som har mangler eller avvik. Beregningene vil fremover i teksten bli betegnet som
-Kalkyle eller Kalkyler.
+Denne seksjonen beskriver de beregningene som vi gjør på dokumentet med næringsopplysninger. Det er disse beregningene som Skatteetaten kjører
+når et dokument med næringsopplysninger blir mottatt. Beregningene blir fra Skatteetatens side benyttet for å sjekke at dokumentet er korrekt utfylt,
+og at alle verdiene er i henhold til de beregningene som Skatteetaten har spesifisert. Er det mangler eller avvik i de beregnede verdiene å vil valideringstjensten
+bygge opp et valideringsresulat som sier noe om hva som mangler i det beregnede grunnlaget, men ikke nødvendigvis referere til hvilken beregning som
+er berørt, den vil kun referere til de beregnede verdiene som har mangler eller avvik. Beregningene vil fremover i teksten bli betegnet som
+_Kalkyle_ eller _Kalkyler_.
 
 ## Kalkyler
 
-Skatteetaten er i ferd med å lage en DSL for beregningene som henviser til seksjoner og felter i XML strukturen. Tanken er at denne skal kunne
-brukes som en spesifikasjon av beregningene som sluttbrukersystemene må implementere for å kunne sende inn de riktige dataene. Denne DSL'en er laget som
-[Kotlin](https://kotlinlang.org/) kode og Skatteetaten bruker selv denne DSL som en kjørbar spesifikasjon av Kalkylene. Kalkylene vil derfor bruke reserverte ord i Kotlin som en
-del av Kallkylespråket.
+Skatteetaten har etablert en DSL for Kalkylene som henviser til elementer og felt i XML-strukturen. Tanken er at denne skal kunne
+brukes som en spesifikasjon av Kalkylene som sluttbrukersystemene må implementere for å kunne sende inn de riktige dataene. Denne DSL'en er laget
+som [Kotlin](https://kotlinlang.org/) kode og Skatteetaten bruker selv denne DSL'en som en kjørbar spesifikasjon av Kalkylene. Kalkylene vil derfor
+bruke reserverte ord i Kotlin som en del av Kallkylespråket.
 
-Denne spesifikasjonen har navngivning av del konsepter som man må gjøre seg kjent med for å kunne forstå hvordan kalkylene er bygget opp.
+Denne spesifikasjonen har navngivning av del konsepter som man må gjøre seg kjent med for å kunne forstå hvordan Kalkylene er bygget opp.
 
-Eksempel på en kalkyle:
+Eksempel på en Kalkyle:
 
 ```kotlin
 val annenDriftsinntektKalkyle =
             summer forekomsterAv annenDriftsinntekt forVerdi { it.beloep }
 ```
 
-Denne kalkylen summerer alle feltene med navn `beloep` i for alle forekomster av `annenDriftsinntekt`. En forekomst i dokumentet med Næringsopplysninger er elementer
+Denne kalkylen summerer alle feltene med navn `beloep` for alle forekomster av `annenDriftsinntekt`. En forekomst i dokumentet med Næringsopplysninger er elementer
 som er av typen `EntitetMedGenerelleEgenskaper` i xsd. Man vil finne igjen elementene fra kalkylen gjennom de navnene som er bruk
 gjennom å slå opp i tilhørende XDS for næringsopplysninger.
 
-Alle elementer som ar `EntitetMedGenerelleEgenskaper` som en supertype kan refereres gjennom `forekomsterAv` i kalkylen. Den fulle xpath er ikke gjengitt i uttrykket
-men alle navn som gjengis på denne måten i en kalkyle kan finnes unikt i pågjeldene dokument og referert xsd.
+Alle elementer som har `EntitetMedGenerelleEgenskaper` som en supertype kan refereres gjennom `forekomsterAv` i kalkylen. Den fulle xpath er ikke gjengitt i uttrykket
+men alle navn som gjengis på denne måten i en kalkyle kan finnes unikt i pågjeldene dokument og referert xsd slik at full sti ikke benyttes for å
+gjøre definisjonen mer kompakt.
 Konstruksjonen `forVerdi` i uttrykket over representerer navnet på det feltet i forekomsten som skal summeres. Flere felt kan refereres i kombinasjon, eksempler på dette kommer
-lengre ned i beskrivelsen. Referansen `it` er det implisitte navnet på forekomsten som man henter feltet på. Det er
-et standard navn som kotlin bruke for implisitte iteratorer og kommer til å bli benyttet mange steder i kalkylene.
+lengre ned i beskrivelsen. Referansen `it` er det implisitte navnet på forekomsten som man henter feltet på. Det er et standard navn som kotlin bruke for
+en implisitt iterator og kommer til å bli benyttet mange steder i kalkylene.
 
 Feltet `it.beloep` som bli referert under forekomsten `annenDriftsinntekt` kan gjenfinnes i XSD for typen av forekomst som
 `annenDriftsinntekt` representerer:
 
-```
+```xml
 <xsd:complexType name="AnnenDriftsinntekt">
         <xsd:complexContent>
             <xsd:extension base="EntitetMedGenerelleEgenskaper">
@@ -56,15 +58,18 @@ Feltet `it.beloep` som bli referert under forekomsten `annenDriftsinntekt` kan g
 
 Vi ser at feltet `beloep` er definert som en kompleks type: `BeloepMedSkattemessigeEgenskaper`. Selve beløpsfeltet er definert slik i denne typen:
 
-```
+```xml
 <xsd:complexType name="BeloepMedSkattemessigeEgenskaper">
         <xsd:sequence>
             <xsd:element name="beloep" type="BeloepMedInnkapsling"/>
         </xsd:sequence>
     </xsd:complexType>
 
+```
+
 og
 
+```xml
 <xsd:complexType name="BeloepMedInnkapsling" skatt:begrepsreferanse="https://data.skatteetaten.no/begrep/20b2e146-9fe1-11e5-a9f8-e4115b280940">
         <xsd:sequence>
             <xsd:element name="beloep" type="BeloepMed2Desimaler"/>
@@ -72,7 +77,7 @@ og
     </xsd:complexType>
 ```
 
-Så em gyldig xpath referanse til dette feltet vil være: `beloep/beloep`. Men for typene `BeloepMedSkattemessigeEgenskaper`og `BeloepMedSkattemessigeEgenskaperOgOverstyring`
+Så en gyldig xpath referanse til dette feltet vil være: `beloep/beloep`. Men for typene `BeloepMedSkattemessigeEgenskaper`og `BeloepMedSkattemessigeEgenskaperOgOverstyring`
 så har vi etablert en snarveiskonvenskjon som sier at dette kan refereres direkte når det dreier seg om beløpsverdien, og da
 altså på formen `it.beloep` for eksempelet over.
 
@@ -80,12 +85,12 @@ altså på formen `it.beloep` for eksempelet over.
 
 Kalkylene kan kombineres, der man ønsker å kombinere summer fra forskjellige kalkyler. I eksempelet under så kombinerer vi to kalkyler for å returnere en tredje verdi:
 
-```
+```kotlin
     val sumDriftsinntekterKalkyle: Kalkyle =
             (salgsinntekterKalkyle + annenDriftsinntektKalkyle) verdiSom sumDriftsinntekt
 ```
 
-Denne kalkylen vil returnere en ny sim for driftsinntekt som en verdi navngitt `sumDriftinntekt`. Dette er en enkeltstående verdi som er
+Denne kalkylen vil returnere en ny sum for driftsinntekt som en verdi navngitt `sumDriftinntekt`. Dette er en enkeltstående verdi som er
 global i dokumentet. På samme måte som `annenDriftsinntekt` så kan dette feltet finnes i XSD her:
 
 ```xml
@@ -101,11 +106,11 @@ Mange av kalkylene skal beregne verdier som ligger inne som forekomster av typen
 returnerer en forekomst med gitte verdier og også en definert id. Det vil derfor, for noen av forekomstene i dokumentet med næringsopplysninger
 være krav til hvordan en id er utfylt. Alle elementene av typen `EntitetMedGenerelleEgenskaper` har id som et påkrevd felt, og denne
 implementasjonsguiden vil definere regler for disse id'en. Dette er viktig fordi id brukes som utgangspunkt for å sammenlikne innkommende verdi med det
-som Skatteetaten selv beregner. To forekomster med ulik id vil i henhold til denne definisjonen være ulike.
+som Skatteetaten selv beregner. To forekomster med ulik id vil i henhold til denne definisjonen være ulike. Disse reglene er ikke spesifisert enda.
 
 Eksempel på kalkyle som returnerer en forekomst:
 
-```
+```kotlin
 internal val annenDriftsinntektstypeInntektKalkyle = summer forekomsterAv gevinstOgTapskonto forVerdi { it.inntektFraGevinstOgTapskonto } verdiSom NyForekomst(forekomststTypeSpesifikasjon = annenDriftsinntekt, idVerdi = "3890", feltKoordinat = annenDriftsinntekt.beloep, feltMedFasteVerdier =
     {
         listOf(
@@ -136,7 +141,7 @@ gitt at summen for denne kalkylen returnerer 5000.
 
 ### Kalkyler med flere verdier i en forekomst
 
-```
+```kotlin
 private val forekomsterGevinstOgTapskonto = itererForekomster forekomsterAv gevinstOgTapskonto
 private val inntektFraGevinstOgTapskontoKalkyle = forekomsterGevinstOgTapskonto forVerdier (
             listOf(
@@ -148,9 +153,9 @@ private val inntektFraGevinstOgTapskontoKalkyle = forekomsterGevinstOgTapskonto 
 ```
 
 Over så har vi referert `forekomsterAvGevinstOgTapskonto` som en egen variabel fordi vi skal gjøre flere ting med disse forekomstene. Dette er en forenkling som
-brukes i flere av kalkylene. Kalkylen `inntektFraGevinstOgTapskontoKalkyle` henvser til flere komvinasjoner av uttrygg og felt som skal returners gitt ulike betingelser. Alle
+brukes i flere av kalkylene. Kalkylen `inntektFraGevinstOgTapskontoKalkyle` henvser til flere komvinasjoner av uttrykk og felt som skal returners gitt ulike betingelser. Alle
 betingelsene i listen blir evaluert opp mot verdiene i dokumentet. Det første uttrykket i listen over vil evaluere fra venstre mot høyre gitt at det
-finnes felt med angitte egenskaper på vedi. `f.grunnlagForAaretsInntektsOgFradragsfoering.der(derVerdiErStoerreEnn(15000))` krever at feltet `grunnlagForAaretsInntektsOgFradragsfoering` har en verdi som er
+finnes felt med angitte egenskaper på vedrdien i feltet som refereres. `f.grunnlagForAaretsInntektsOgFradragsfoering.der(derVerdiErStoerreEnn(15000))` krever at feltet `grunnlagForAaretsInntektsOgFradragsfoering` har en verdi som er
 større enn `15000`, og gitt at det er sant så multipliserer vi denne verdien med feltet `satsForInntektsfoeringOgInntektsfradrag` Denne satsen er angitt
 i prosent, feks 20, og vi legger derfor på `.prosent()` for å angi at dette er oppgitt i prosents lik at verdien blir ganget med 0.20 ikke 20. Gitt
 at begge feltene finnes i forekomsten. Den siste delen av uttrykket `somFelt gevinstOgTapskonto.inntektFraGevinstOgTapskonto` vil legge til dette beregnede
@@ -178,12 +183,12 @@ Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor vi
 
 Kalkylene i dette kalkyletreet kjører i denne rekkefølgen. Det betyr at eventuelt beregnede vedier fra `driftskostnadstypeKalkyle` er tilgjengelige
 for kalkylen `aarsresultatKalkyle` når denne kjører. Dette fordi kalkyler som kjøres tidlig kan _beregne verdier som brukes av andre kalkyler_. Det jobbes med å
-lage dette slik at rekkefølgen kan utledes.
+lage dette slik at rekkefølgen kan utledes og ikke spesifiseres slik.
 
 For at listene av kalkyler ikke skal bli for store så er de organisert i ulike områder, som feks resultatregnskapet. De ulike områdene har også avhengigheter. Feks så må
 kalkylene for GevinstOgTapskonto kjøre før kalkylene for Resultatregnskapet. Dette settes opp slik:
 
-```
+```kotlin
 object DefaultKalkyletre : Kalkyletre(
         GevinstOgTapskontoKalkyler,
         SpesifikasjonAvBalanse,
