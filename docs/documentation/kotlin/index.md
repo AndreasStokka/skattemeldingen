@@ -158,7 +158,38 @@ Det samme er gjeldende for de andre uttrykkene i listen. Andre begreper for felt
 
 ### Rekkefølge på kalkyler
 
-Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor viktig at kalkylene kjører i riktig rekkefølge. Gitt at kalkyle
+Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor viktig at kalkylene kjører i riktig rekkefølge. Vi spesifiserer rekkefølgen slik:
+
+```kotlin
+    internal val tre = Kalkyletre(
+            driftskostnadstypeKalkyle,
+            annenDriftsinntektstypeInntektKalkyle,
+            annenDriftsinntektstypeFradragKalkyle,
+            sumDriftsinntekterKalkyle,
+            sumDriftskostnaderKalkyle,
+            sumFinansinntektKalkyle,
+            sumFinanskostnadKalkyle,
+            sumEkstraordinaerePosterKalkyle,
+            sumSkattekostnadKalkyle,
+            aarsresultatKalkyle)
+```
+
+Kalkylene i dette kalkyletreet kjærer i denne rekkefølgen. Det betyr at eventuelt beregnede vedier fra `driftskostnadstypeKalkyle` er tilgjengelige
+for kalkylen `aarsresultatKalkyle` når denne kjører. Dette fordi kalkyler som kjøres tidlig kan _beregne verdier som brukes av andre kalkyler_. Det jobbes med å
+lage dette slik at rekkefølgen kan utledes.
+
+For at listene av kalkyler ikke skal bli for store så er de organisert i ulike områder, som feks resultatregnskapet. De ulike områdene har også avhengigheter. Feks så må
+kalkylene for GevinstOgTapskonto kjøre før kalkylene for Resultatregnskapet. Dette settes opp slik:
+
+```
+object DefaultKalkyletre : Kalkyletre(
+        GevinstOgTapskontoKalkyler,
+        SpesifikasjonAvBalanse,
+        Resultatregnskapet
+)
+```
+
+Dette definerer rekkefølgen på kallkyleområdene innbyrdes.
 
 # Kalkyler
 
