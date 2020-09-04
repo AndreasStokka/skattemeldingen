@@ -15,7 +15,9 @@ Kalkyle eller Kalkyler.
 ## Kalkyler
 
 Skatteetaten er i ferd med å lage en DSL for beregningene som henviser til seksjoner og felter i XML strukturen. Tanken er at denne skal kunne
-brukes som en spesifikasjon av beregningene som sluttbrukersystemene må implementere for å kunne sende inn de riktige dataene.
+brukes som en spesifikasjon av beregningene som sluttbrukersystemene må implementere for å kunne sende inn de riktige dataene. Denne DSL'en er laget som
+[Kotlin](https://kotlinlang.org/) kode og Skatteetaten bruker selv denne DSL som en kjørbar spesifikasjon av Kalkylene. Kalkylene vil derfor bruke reserverte ord i Kotlin som en
+del av Kallkylespråket.
 
 Denne spesifikasjonen har navngivning av del konsepter som man må gjøre seg kjent med for å kunne forstå hvordan kalkylene er bygget opp.
 
@@ -174,7 +176,7 @@ Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor vi
             aarsresultatKalkyle)
 ```
 
-Kalkylene i dette kalkyletreet kjærer i denne rekkefølgen. Det betyr at eventuelt beregnede vedier fra `driftskostnadstypeKalkyle` er tilgjengelige
+Kalkylene i dette kalkyletreet kjører i denne rekkefølgen. Det betyr at eventuelt beregnede vedier fra `driftskostnadstypeKalkyle` er tilgjengelige
 for kalkylen `aarsresultatKalkyle` når denne kjører. Dette fordi kalkyler som kjøres tidlig kan _beregne verdier som brukes av andre kalkyler_. Det jobbes med å
 lage dette slik at rekkefølgen kan utledes.
 
@@ -193,15 +195,14 @@ Dette definerer rekkefølgen på kallkyleområdene innbyrdes.
 
 # Kalkyler
 
-## Resultatregnskapet
-
-## Spesifikasjon av balanse
-
-## GevinstOgTapskonto
+En oversikt over kalkylene som er definert så langt finnes i [Oversikten over kalkyler](/kalkyler)
 
 # Begreper
 
-- DLS, Domain Specific Language
-- Forekomst
-- Beløp med egenskaper
-- Globalt felt
+- DSL, Domain Specific Language, `https://en.wikipedia.org/wiki/Domain-specific_language`
+- Forekomst, et element i xml dokumentet som har en identifikator på et element som kan forekommer flere ganger. Id-feltet skiller de ulike
+  repeterende feltene fra hverandre gjennom at to forekomser må ha _ulik id_
+- Beløp med egenskaper. Er et element som representerer et beløp, men som kan være knyttet til ulike egenskaper, feks trygdeEllerSkattemessigeUnntak eller valuta.
+  Et slik felt refereres til som er _felt med egenkaper_
+- Globalt felt, er et felt som det kun finnnes ett innslag av i xml - dokumentet, feks `sumFinansinntekt`
+- Global forekomst, en gruppeing av felt som kun kan forekomme en gang i xml - dokumentet, feks `virksomhet`. Slike forekomster trenger ikke id.
