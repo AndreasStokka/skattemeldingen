@@ -154,7 +154,29 @@ at begge feltene finnes i forekomsten. Den siste delen av uttrykket <code class=
 feltet som et felt i forekomsten med den beregnede verdien og da i feltet med navn <code class="language-text">inntektFraGevinstOgTapskonto</code>.</p>
 <p>Det samme er gjeldende for de andre uttrykkene i listen. Andre begreper for felt som returneres er: <code class="language-text">abs()</code> for å returnere en absoluttverdi for et felt.</p>
 <h3 id="rekkefølge-på-kalkyler" style="position:relative;"><a href="#rekkef%C3%B8lge-p%C3%A5-kalkyler" aria-label="rekkefølge på kalkyler permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Rekkefølge på kalkyler</h3>
-<p>Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor viktig at kalkylene kjører i riktig rekkefølge. Gitt at kalkyle</p>
+<p>Noen av kalkylene bruker felt som er beregnet i andre kalkyler. Det er derfor viktig at kalkylene kjører i riktig rekkefølge. Vi spesifiserer rekkefølgen slik:</p>
+<div class="gatsby-highlight" data-language="kotlin"><pre class="language-kotlin"><code class="language-kotlin">    <span class="token keyword">internal</span> <span class="token keyword">val</span> tre <span class="token operator">=</span> <span class="token function">Kalkyletre</span><span class="token punctuation">(</span>
+            driftskostnadstypeKalkyle<span class="token punctuation">,</span>
+            annenDriftsinntektstypeInntektKalkyle<span class="token punctuation">,</span>
+            annenDriftsinntektstypeFradragKalkyle<span class="token punctuation">,</span>
+            sumDriftsinntekterKalkyle<span class="token punctuation">,</span>
+            sumDriftskostnaderKalkyle<span class="token punctuation">,</span>
+            sumFinansinntektKalkyle<span class="token punctuation">,</span>
+            sumFinanskostnadKalkyle<span class="token punctuation">,</span>
+            sumEkstraordinaerePosterKalkyle<span class="token punctuation">,</span>
+            sumSkattekostnadKalkyle<span class="token punctuation">,</span>
+            aarsresultatKalkyle<span class="token punctuation">)</span></code></pre></div>
+<p>Kalkylene i dette kalkyletreet kjærer i denne rekkefølgen. Det betyr at eventuelt beregnede vedier fra <code class="language-text">driftskostnadstypeKalkyle</code> er tilgjengelige
+for kalkylen <code class="language-text">aarsresultatKalkyle</code> når denne kjører. Dette fordi kalkyler som kjøres tidlig kan <em>beregne verdier som brukes av andre kalkyler</em>. Det jobbes med å
+lage dette slik at rekkefølgen kan utledes.</p>
+<p>For at listene av kalkyler ikke skal bli for store så er de organisert i ulike områder, som feks resultatregnskapet. De ulike områdene har også avhengigheter. Feks så må
+kalkylene for GevinstOgTapskonto kjøre før kalkylene for Resultatregnskapet. Dette settes opp slik:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">object DefaultKalkyletre : Kalkyletre(
+        GevinstOgTapskontoKalkyler,
+        SpesifikasjonAvBalanse,
+        Resultatregnskapet
+)</code></pre></div>
+<p>Dette definerer rekkefølgen på kallkyleområdene innbyrdes.</p>
 <h1 id="kalkyler-1" style="position:relative;"><a href="#kalkyler-1" aria-label="kalkyler 1 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kalkyler</h1>
 <h2 id="resultatregnskapet" style="position:relative;"><a href="#resultatregnskapet" aria-label="resultatregnskapet permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Resultatregnskapet</h2>
 <h2 id="spesifikasjon-av-balanse" style="position:relative;"><a href="#spesifikasjon-av-balanse" aria-label="spesifikasjon av balanse permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Spesifikasjon av balanse</h2>
