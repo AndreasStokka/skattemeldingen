@@ -34,7 +34,7 @@ Given a version number MAJOR.MINOR.PATCH, increment the:
 Innenfor et inntektsår kan det forutsettes av det kun kommer MINOR- og PATCH-versjoner.
 
 #XSD Skattemelding for lønnstakere og pensjonister for 2020
-Versjon  0.8.0.0 av denne XSD'en ligger vedlagt og heter [skattemelding_v8.xsd](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/xsd/skattemelding_v8.xsd)
+Versjon  8.0.0 av denne XSD'en ligger vedlagt og heter [skattemelding_v8.xsd](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/xsd/skattemelding_v8.xsd)
 Eksempel på innsendt XML fil for en person på siste versjon kommer.
 Denne spesifikasjonen har både noen mangler og noen elementer som skal fjernes:
 
@@ -44,9 +44,9 @@ Siste versjon har fjernet interne konstruksjoner som ikke vil være relevant i e
 XSD'en kommer ny og oppdatert versjon i senere versjoner av spesifikasjon/implementasjonsguide.
 
 #XSD Næringsopplysninger for 2020
-Versjon 1 av denne XSD'en ligger vedlagt og heter [naeringsopplysninger_v1.xsd](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/xsd/naeringsopplysninger_v1.xsd)
+Versjon 1.0.0 av denne XSD'en ligger vedlagt og heter [naeringsopplysninger_v1.xsd](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/xsd/naeringsopplysninger_v1.xsd)
 
-Eksempel på innsendt XML fil fra et enkeltpersonforetak ligger vedlagt og heter [Naeringsopplysninger-ENK-Eksempel.xml](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/test/Naeringsopplysninger-ENK-Eksempel.xml) 
+Eksempel på innsendt XML fil fra et enkeltpersonforetak ligger vedlagt og heter [Naeringsopplysninger-ENK-Eksempel.xml](https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/test/Naeringsingopplysninger-ENK-Eksempel.xml) 
 
 Grafisk fremstilling ligger vedlagt og heter [Naeringsopplysninger-UML-modell.pdf](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/Naeringsopplysninger-UML-modell.pdf)
 
@@ -54,6 +54,7 @@ Grafisk fremstilling ligger vedlagt og heter [Naeringsopplysninger-UML-modell.
 
 I Resultatregnskap og Balanse benyttes kodelister til å spesifisere hvilke konti som kan benyttes.  I tillegg til kontonummer inneholder kodelistene regnskapspliktstype (1 = Ikke årsregnskapspliktig, 2 = Årsregnskapspliktig, 5 = Begrenset regnskapsplikt.  Tilsvarer dagens næringsoppgave 1, 2 og 5).  Dette for å indikere hvilke konti som er relevante for det enkelte foretaket.  Noen konti er for eksempel kun relevante for foretak med årsregnskapsplikt.
 Det er en kodeliste pr. kontoklasse/gruppe (Resultatregnskap: Salgsinntekt, AnnenDriftsinntekt, Varekostnad, Lønnskostnad, AnnenDriftskostnad, Finansinntekt, Finanskostnad, EkstraordinærPost, Skattekostnad.  Balanse: Anleggsmidler, Omløpsmidler, Langsiktiggjeld, Kortsiktiggjeld og Egenkaptial).
+
 Alle kodelistene er samlet i en fysisk fil hvor den enkelte kodeliste kalles "underkodeliste".  Kodelistefil i "lesbart" format ligger vedlagt og heter [Kodeliste_ResultatregnskapOgBalanse.xslx](https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/Kodeliste_ResultatregnskapOgBalanse.xlsx)
 Kodelistefiler i XML format til bruk  i utvikling ligger vedlagt og heter [2020_resultatregnskapOgBalanse.xml](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/kodeliste/2020_resultatregnskapOgBalanse.xml) og [2020_midlertidigOgPermanentForskjellstype.xml](https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/informasjonsmodell/kodeliste/2020_midlertidigOgPermanentForskjellstype.xml).
 
@@ -64,11 +65,7 @@ XSD'en kommer ny og oppdatert versjon i senere versjoner av spesifikasjon/implem
 #XSD Respons fra validering
 Valideringstjenesten vil returnere en respons som beskriver avvik og feil. Et eksempel på en slik respons er vist i kapittelet om Valideringstjenesten, men XSD for denne tjenesten er ikke definert i denne versjonen av spesifikasjon/implementasjonsguide.
 
-##Skatteberegning
-
-Responsen fra tjenesten vil også inneholde resultatet av skatteetatens skatteberegning. En foreløpig XSD og XML-eksempelfil for denne informasjonsmodellen finnes i vedleggene beregnet_skatt_v3.xsd og beregnet_skatt.xml.
-
-##XSD Tilbakemelding
+#XSD Tilbakemelding
 Etter innsending av skattemelding/næringsopplysninger vil skatteetaten kvittere med en tilbakemeldingsfil i Innboksen i Altinn som inneholder status og eventuelle avvik. 
 
 XSD for denne tjenesten er ikke definert i denne versjonen av spesifikasjon/implementasjonsguide.
