@@ -142,7 +142,6 @@
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
     <span class="token property">&quot;name&quot;</span><span class="token operator">:</span> <span class="token property">&quot;ping&quot;</span><span class="token operator">:</span> <span class="token string">&quot;pong&quot;</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>For detaljer om ping-tjenesten og &quot;hent Skattemelding&quot; tjenestene, se filen hent.py <a href="/skattemeldingen/5915fb336cfa379195e11ce501a29c6f/skattemelding-eksternt-api-test.zip">skattemelding-eksternt-api-test.zip</a></p>
 <h2 id="hent-skattemelding" style="position:relative"><a href="#hent-skattemelding" aria-label="hent skattemelding permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hent skattemelding</h2>
 <p>API som returnerer siste gjeldende skattemeldingen for skattepliktige for gitt inntektsår. Den siste gjeldende skattemeldingen kan enten være utkast eller fastsatt:</p>
 <ul>
@@ -157,18 +156,28 @@
 <li><code class="language-text">&lt;inntektsår&gt;: Inntektsåret man spør om informasjon for, i formatet YYYY.</code></li>
 <li><code class="language-text">&lt;identifikator&gt;: Fødselsnummer, D-nummer eller organisasjonsnummer til den skattepliktige som man spør om skattemeldingen for.</code></li>
 </ul>
-<p><strong>Respons</strong> : se <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingognaeringsopplysningerforespoerselresponse_v1_kompakt.xsd">skattemeldingognaeringsopplysningerforespoerselresponse_v1.xsd</a></p>
-<div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml">eksempel:
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hentSkattemeldingMvResponse</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>no:skatteetaten:fastsetting:formueinntekt:skattemelding:hentskattemeldingmv:response:v1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>skattemeldingdokument</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>SKI:138:5829<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>Base64-enkodet skattemelding.xml iht XSD<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>skattemeldingUtkastPersonligSkattepliktig<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>skattemeldingdokument</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>hentSkattemeldingMvResponse</span><span class="token punctuation">&gt;</span></span></code></pre></div>
+<p><strong>Respons</strong> :</p>
+<ul>
+<li>Iht. XSD: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingognaeringsopplysningerforespoerselresponse_v1_kompakt.xsd">skattemeldingognaeringsopplysningerforespoerselresponse_v1.xsd</a></li>
+<li>Eksempel XML: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xml/skattemeldingerOgNaeringsopplysningerforespoerselResponse.xml">skattemeldingerOgNaeringsopplysningerforespoerselResponse.xml</a></li>
+</ul>
+<p>skattemeldingerOgNaeringsopplysningerforespoerselResponse:</p>
+<ul>
+<li>
+<p>dokumenter – konvolutt for dokumenter</p>
+<ul>
+<li>skattemeldingdokument – complex type</li>
+<li>type – kodeliste – [skattemeldingUtkastPersonligSkattepliktig|skattemeldingFastsattPersonligSkattepliktig]</li>
+<li>id – dokumentidentifikator til dokumentet i skatteetatens system.</li>
+<li>encoding – kodeliste – [utf-8]</li>
+<li>content – serialisert dokumentinnhold</li>
+<li>naeringsopplysningsdokument – complex type</li>
+<li>id – dokumentidentifikator til dokumentet i skatteetatens system</li>
+<li>encoding – kodeliste – [utf-8]</li>
+<li>content – serialisert dokumentinnhold</li>
+</ul>
+</li>
+</ul>
 <h2 id="hent-skattemelding-basert-på-type" style="position:relative"><a href="#hent-skattemelding-basert-p%C3%A5-type" aria-label="hent skattemelding basert på type permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Hent Skattemelding (basert på type)</h2>
 <p>API som returnerer siste gjeldende skattemeldingen av gitt type for skattepliktige for gitt inntektsår. Følgende type skattemeldinger er støttet:</p>
 <ul>
@@ -183,19 +192,12 @@
 <li><code class="language-text">&lt;inntektsår&gt;: Inntektsåret man spør om informasjon for, i formatet YYYY.</code></li>
 <li><code class="language-text">&lt;identifikator&gt;: Fødselsnummer, D-nummer eller organisasjonsnummer til den skattepliktige som man spør om skattemeldingen for.</code></li>
 </ul>
-<p><strong>Respons</strong> : se <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingognaeringsopplysningerforespoerselresponse_v1_kompakt.xsd">skattemeldingognaeringsopplysningerforespoerselresponse_v1.xsd</a></p>
-<div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml">eksempel:
-<span class="token prolog">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>skattemeldingerOgNaeringsopplysningerforespoerselResponse</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>no:skatteetaten:fastsetting:formueinntekt:skattemeldingerognaeringsopplysninger:forespoersel:response:v1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>skattemeldingdokument</span><span class="token punctuation">&gt;</span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>id</span><span class="token punctuation">&gt;</span></span>SKI:138:7259<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>id</span><span class="token punctuation">&gt;</span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c2thdHRlbWVsZGluZyB4bWxucz0idXJuOm5vOnNrYXR0ZWV0YXRlbjpmYXN0c2V0dGluZzpmb3JtdWVpbm50ZWt0OnNrYXR0ZW1lbGRpbmc6ZWtzdGVybjp2OCI+PHBhcnRzcmVmZXJhbnNlPjMwMDAwNDU3ODU8L3BhcnRzcmVmZXJhbnNlPjxpbm50ZWt0c2Fhcj4yMDIwPC9pbm50ZWt0c2Fhcj48L3NrYXR0ZW1lbGRpbmc+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>skattemeldingUtkastPersonligSkattepliktig<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>skattemeldingdokument</span><span class="token punctuation">&gt;</span></span>
-   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>skattemeldingerOgNaeringsopplysningerforespoerselResponse</span><span class="token punctuation">&gt;</span></span></code></pre></div>
+<p><strong>Respons</strong> :</p>
+<ul>
+<li>Iht. XSD: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingognaeringsopplysningerforespoerselresponse_v1_kompakt.xsd">skattemeldingognaeringsopplysningerforespoerselresponse_v1.xsd</a></li>
+<li>Eksempel XML: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xml/skattemeldingerOgNaeringsopplysningerforespoerselResponse.xml">skattemeldingerOgNaeringsopplysningerforespoerselResponse.xml</a></li>
+</ul>
+<p>For nærmere beskrivelse av felt i XSDen, se forrige kapittel.</p>
 <h2 id="valider-skattemelding" style="position:relative"><a href="#valider-skattemelding" aria-label="valider skattemelding permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Valider skattemelding</h2>
 <p>Tjenesten validerer innholdet i en skattemelding og returnerer en respons med eventuelle feil, avvik og advarsler. Tjenesten vil foreta følgende:</p>
 <ol>
@@ -213,65 +215,80 @@ Uansett versjon vil skatteetaten ikke lagre eller følge opp informasjonen som s
 <li><code class="language-text">&lt;inntektsår&gt;: Inntektsåret man spør om informasjon for, i formatet YYYY.</code></li>
 <li><code class="language-text">&lt;identifikator&gt;: Fødselsnummer, D-nummer eller organisasjonsnummer til den skattepliktige</code></li>
 </ul>
-<p><strong>Body</strong> : se <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingerognaeringsopplysningerequest_v1_kompakt.xsd">skattemeldingerognaeringsopplysningerequest_v1.xsd</a></p>
-<div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml">Eksempel:
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>skattemeldingerognaeringsopplysningerRequest</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>no:skatteetaten:fastsetting:formueinntekt:skattemeldingerognaeringsopplysninger:request:v1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokument</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>skattemeldingPersonligSkattepliktig<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>Base64-enkodet skattemelding.xml iht xsd-en<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokument</span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>skattemeldingerognaeringsopplysningerRequest</span><span class="token punctuation">&gt;</span></span></code></pre></div>
-<p><strong>Respons</strong> : se <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingerognaeringsopplysningerresponse_v1_kompakt.xsd">skattemeldingerognaeringsopplysningerresponse_v1.xsd</a></p>
-<div class="gatsby-highlight" data-language="xml"><pre class="language-xml"><code class="language-xml">Eksempel:
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>skattemeldingerOgNaeringsopplysningerResponse</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>no:skatteetaten:fastsetting:formueinntekt:skattemeldingerognaeringsopplysninger:response:v1<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokument</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>skattemeldingEtterBeregning<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c2thdHRlbWVsZGluZyB4bWxucz0idXJuOm5vOnNrYXR0ZWV0YXRlbjpmYXN0c2V0dGluZzpmb3JtdWVpbm50ZWt0OnNrYXR0ZW1lbGRpbmc6ZWtzdGVybjp2OCI+PHBhcnRzcmVmZXJhbnNlPjIyMjU3NjY2PC9wYXJ0c3JlZmVyYW5zZT48aW5udGVrdHNhYXI+MjAyMDwvaW5udGVrdHNhYXI+PGJvbGlnT2dFaWVuZGVsZXI+PGtqb2VyZXRvZXk+PGlkPjM3NzhhOTg2LTE4YzctNGYxNC05NDMwLTVjNmY0ZDUyNWVjNjwvaWQ+PGtqZW5uZW1lcmtlPjx0ZWtzdD4zMTM8L3Rla3N0Pjwva2plbm5lbWVya2U+PGFhckZvckZvZXJzdGVnYW5nc3JlZ2lzdHJlcmluZz48YWFyc3RhbGw+MTk5OTwvYWFyc3RhbGw+PC9hYXJGb3JGb2Vyc3RlZ2FuZ3NyZWdpc3RyZXJpbmc+PGZvcm11ZXN2ZXJkaUZvcktqb2VyZXRvZXk+PGJlbG9lcD48YmVsb2VwSU5vaz48YmVsb2VwU29tSGVsdGFsbD4xMDAwPC9iZWxvZXBTb21IZWx0YWxsPjwvYmVsb2VwSU5vaz48L2JlbG9lcD48L2Zvcm11ZXN2ZXJkaUZvcktqb2VyZXRvZXk+PC9ram9lcmV0b2V5PjwvYm9saWdPZ0VpZW5kZWxlcj48L3NrYXR0ZW1lbGRpbmc+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokument</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokument</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>naeringsopplysningerEtterBeregning<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>PD94bWwgdmVyc2lvbj0nMS4wJyBlbmNvZGluZz0nVVRGLTgnPz48bmFlcmluZ3NvcHBseXNuaW5nZXIgeG1sbnM9InVybjpubzpza2F0dGVldGF0ZW46ZmFzdHNldHRpbmc6Zm9ybXVlaW5udGVrdDpuYWVyaW5nc29wcGx5c25pbmdlcjp2MSI+PHBhcnRzcmVmZXJhbnNlPjIyMjU3NjY2PC9wYXJ0c3JlZmVyYW5zZT48aW5udGVrdHNhYXI+MjAyMDwvaW5udGVrdHNhYXI+PHJlc3VsdGF0cmVnbnNrYXA+PGRyaWZ0c2lubnRla3Q+PHNhbGdzaW5udGVrdD48aWQ+MTwvaWQ+PHNhbGdzaW5udGVrdHN0eXBlPjxzYWxnc2lubnRla3RzdHlwZT40NTYwPC9zYWxnc2lubnRla3RzdHlwZT48L3NhbGdzaW5udGVrdHN0eXBlPjxiZWxvZXA+PGJlbG9lcD48YmVsb2VwPjEwMDwvYmVsb2VwPjwvYmVsb2VwPjwvYmVsb2VwPjwvc2FsZ3Npbm50ZWt0PjxzYWxnc2lubnRla3Q+PGlkPjI8L2lkPjxzYWxnc2lubnRla3RzdHlwZT48c2FsZ3Npbm50ZWt0c3R5cGU+NDU2MDwvc2FsZ3Npbm50ZWt0c3R5cGU+PC9zYWxnc2lubnRla3RzdHlwZT48YmVsb2VwPjxiZWxvZXA+PGJlbG9lcD4xNzwvYmVsb2VwPjwvYmVsb2VwPjwvYmVsb2VwPjwvc2FsZ3Npbm50ZWt0Pjxhbm5lbkRyaWZ0c2lubnRla3Q+PGlkPjI8L2lkPjxhbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48YW5uZW5EcmlmdHNpbm50ZWt0c3R5cGU+MjAwPC9hbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48L2FubmVuRHJpZnRzaW5udGVrdHN0eXBlPjxiZWxvZXA+PGJlbG9lcD48YmVsb2VwPjIxNzwvYmVsb2VwPjwvYmVsb2VwPjwvYmVsb2VwPjwvYW5uZW5EcmlmdHNpbm50ZWt0Pjxhbm5lbkRyaWZ0c2lubnRla3Q+PGlkPjM8L2lkPjxhbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48YW5uZW5EcmlmdHNpbm50ZWt0c3R5cGU+NzAwPC9hbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48L2FubmVuRHJpZnRzaW5udGVrdHN0eXBlPjxiZWxvZXA+PGJlbG9lcD48YmVsb2VwPi0xNzwvYmVsb2VwPjwvYmVsb2VwPjwvYmVsb2VwPjwvYW5uZW5EcmlmdHNpbm50ZWt0Pjxhbm5lbkRyaWZ0c2lubnRla3Q+PGlkPjE8L2lkPjxhbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48YW5uZW5EcmlmdHNpbm50ZWt0c3R5cGU+MTAwPC9hbm5lbkRyaWZ0c2lubnRla3RzdHlwZT48L2FubmVuRHJpZnRzaW5udGVrdHN0eXBlPjxiZWxvZXA+PGJlbG9lcD48YmVsb2VwPjEwMDwvYmVsb2VwPjwvYmVsb2VwPjwvYmVsb2VwPjwvYW5uZW5EcmlmdHNpbm50ZWt0PjxzdW1EcmlmdHNpbm50ZWt0PjxiZWxvZXA+PGJlbG9lcD40MTc8L2JlbG9lcD48L2JlbG9lcD48L3N1bURyaWZ0c2lubnRla3Q+PC9kcmlmdHNpbm50ZWt0PjxkcmlmdHNrb3N0bmFkPjxzdW1EcmlmdHNrb3N0bmFkPjxiZWxvZXA+PGJlbG9lcD4wPC9iZWxvZXA+PC9iZWxvZXA+PC9zdW1EcmlmdHNrb3N0bmFkPjwvZHJpZnRza29zdG5hZD48c3VtRWtzdHJhb3JkaW5hZXJQb3N0PjxiZWxvZXA+PGJlbG9lcD4wPC9iZWxvZXA+PC9iZWxvZXA+PC9zdW1Fa3N0cmFvcmRpbmFlclBvc3Q+PHN1bVNrYXR0ZWtvc3RuYWQ+PGJlbG9lcD48YmVsb2VwPjA8L2JlbG9lcD48L2JlbG9lcD48L3N1bVNrYXR0ZWtvc3RuYWQ+PGFhcnNyZXN1bHRhdD48YmVsb2VwPjxiZWxvZXA+NDE3PC9iZWxvZXA+PC9iZWxvZXA+PC9hYXJzcmVzdWx0YXQ+PC9yZXN1bHRhdHJlZ25za2FwPjwvbmFlcmluZ3NvcHBseXNuaW5nZXI+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokument</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokument</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>beregnetSkatt<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48YmVyZWduZXRTa2F0dCB4bWxucz0idXJuOm5vOnNrYXR0ZWV0YXRlbjpmYXN0c2V0dGluZzpmb3JtdWVpbm50ZWt0OmJlcmVnbmV0c2thdHQ6djMiPjxza2F0dGVyZWduc2thcHNrb21tdW5lPjAwMjA8L3NrYXR0ZXJlZ25za2Fwc2tvbW11bmU+PHNrYXR0ZWtsYXNzZT4xPC9za2F0dGVrbGFzc2U+PGJlcmVnbmV0U2thdHRGb2VyU2thdHRlZnJhZHJhZz48Z3J1bm5sYWc+MDwvZ3J1bm5sYWc+PGJlbG9lcD4wPC9iZWxvZXA+PC9iZXJlZ25ldFNrYXR0Rm9lclNrYXR0ZWZyYWRyYWc+PGJlcmVnbmV0U2thdHQ+PGdydW5ubGFnPjA8L2dydW5ubGFnPjxiZWxvZXA+MDwvYmVsb2VwPjwvYmVyZWduZXRTa2F0dD48c2thdHRPZ0F2Z2lmdD48Zm9ybXVlc2thdHRUaWxTdGF0PjxncnVubmxhZz4xMDAwPC9ncnVubmxhZz48YmVsb2VwPjA8L2JlbG9lcD48L2Zvcm11ZXNrYXR0VGlsU3RhdD48Zm9ybXVlc2thdHRUaWxLb21tdW5lPjxncnVubmxhZz4xMDAwPC9ncnVubmxhZz48YmVsb2VwPjA8L2JlbG9lcD48L2Zvcm11ZXNrYXR0VGlsS29tbXVuZT48L3NrYXR0T2dBdmdpZnQ+PG9ldnJpZ2VSZXN1bHRhdGVyQXZCZXJlZ25pbmc+PG9ldnJpZ0Zvcm11ZT4xMDAwPC9vZXZyaWdGb3JtdWU+PC9vZXZyaWdlUmVzdWx0YXRlckF2QmVyZWduaW5nPjxhbnZlbmR0VG9sdmRlbFZlZEFyYmVpZHNvcHBob2xkSU5vcmdlPjEyPC9hbnZlbmR0VG9sdmRlbFZlZEFyYmVpZHNvcHBob2xkSU5vcmdlPjxhbnZlbmR0VG9sdmRlbEZvclRyaW5uc2thdHQ+MTI8L2FudmVuZHRUb2x2ZGVsRm9yVHJpbm5za2F0dD48YW52ZW5kdFN0YW5kYXJkZnJhZHJhZz5mYWxzZTwvYW52ZW5kdFN0YW5kYXJkZnJhZHJhZz48L2JlcmVnbmV0U2thdHQ+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokument</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dokument</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">&gt;</span></span>summertSkattegrunnlagForVisning<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>encoding</span><span class="token punctuation">&gt;</span></span>utf-8<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>encoding</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">&gt;</span></span>PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48c2thdHRlZ3J1bm5sYWcgeG1sbnM9InVybjpza2U6ZmFzdHNldHRpbmc6Zm9ybXVlaW5udGVrdDpza2F0dGVncnVubmxhZzp2NSI+PHNrYXR0ZWdydW5ubGFnc29iamVrdD48dGVrbmlza05hdm4+YnJ1dHRvZm9ybXVlPC90ZWtuaXNrTmF2bj48YmVsb2VwPjEwMDA8L2JlbG9lcD48L3NrYXR0ZWdydW5ubGFnc29iamVrdD48c2thdHRlZ3J1bm5sYWdzb2JqZWt0Pjx0ZWtuaXNrTmF2bj5mb3JtdWVzdmVyZGlGb3JLam9lcmV0b2V5PC90ZWtuaXNrTmF2bj48YmVsb2VwPjEwMDA8L2JlbG9lcD48L3NrYXR0ZWdydW5ubGFnc29iamVrdD48c2thdHRlZ3J1bm5sYWdzb2JqZWt0Pjx0ZWtuaXNrTmF2bj5uZXR0b2Zvcm11ZTwvdGVrbmlza05hdm4+PGJlbG9lcD4xMDAwPC9iZWxvZXA+PC9za2F0dGVncnVubmxhZ3NvYmpla3Q+PC9za2F0dGVncnVubmxhZz4=<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokument</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dokumenter</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>avvikEtterBeregning</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>avvik</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>avvikstype</span><span class="token punctuation">&gt;</span></span>avvikNaeringsopplysninger<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>avvikstype</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>global<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beregnetVerdi</span><span class="token punctuation">&gt;</span></span>417<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beregnetVerdi</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sti</span><span class="token punctuation">&gt;</span></span>resultatregnskap/driftsinntekt/sumDriftsinntekt/beloep/beloep<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sti</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>avvik</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>avvik</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>avvikstype</span><span class="token punctuation">&gt;</span></span>manglerNaeringsopplysninger<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>avvikstype</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>global<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beregnetVerdi</span><span class="token punctuation">&gt;</span></span>0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beregnetVerdi</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sti</span><span class="token punctuation">&gt;</span></span>resultatregnskap/driftskostnad/sumDriftskostnad/beloep/beloep<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sti</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>avvik</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>avvikEtterBeregning</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>veiledningEtterKontroll</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>veiledning</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>veiledningstype</span><span class="token punctuation">&gt;</span></span>KJØRETØY_MANGLER_VERDI_SOM_NY<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>veiledningstype</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>3778a986-18c7-4f14-9430-5c6f4d525ec6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>forekomstidentifikator</span><span class="token punctuation">&gt;</span></span>
-            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>sti</span><span class="token punctuation">&gt;</span></span>boligOgEiendeler/kjoeretoey<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>sti</span><span class="token punctuation">&gt;</span></span>
-        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>veiledning</span><span class="token punctuation">&gt;</span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>veiledningEtterKontroll</span><span class="token punctuation">&gt;</span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>skattemeldingerOgNaeringsopplysningerResponse</span><span class="token punctuation">&gt;</span></span></code></pre></div>
-<p>For detaljer om valider-tjenesten, se filen valider.py <a href="/skattemeldingen/5915fb336cfa379195e11ce501a29c6f/skattemelding-eksternt-api-test.zip">skattemelding-eksternt-api-test.zip</a></p>
+<p><strong>Body</strong> :</p>
+<ul>
+<li>Iht. XSD: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingerognaeringsopplysningerequest_v1_kompakt.xsd">skattemeldingerognaeringsopplysningerequest_v1.xsd</a></li>
+<li>Eksempel XML: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xml/validerings_request.xml">validerings_request.xml</a></li>
+</ul>
+<p>skattemeldingerOgNaeringsopplysningerRequest:</p>
+<ul>
+<li>
+<p>dokumentreferanseTilGjeldendeDokument - complex type</p>
+<ul>
+<li>dokumenttype – kodeliste [skattemeldingPersonligSkattepliktig|naeringsopplysninger]</li>
+<li>dokumentidentifikator – dokumentidentifikator til sist gjeldende dokument i skatteetatens system.</li>
+</ul>
+</li>
+<li>
+<p>dokumenter – konvolutt for dokumenter</p>
+<ul>
+<li>dokument – complex type</li>
+<li>type – kodeliste – [skattemeldingPersonligSkattepliktig|naeringsopplysninger]</li>
+<li>encoding – kodeliste – [utf-8]</li>
+<li>content – serialisert dokumentinnhold</li>
+</ul>
+</li>
+</ul>
+<p><strong>Respons</strong> :</p>
+<ul>
+<li>Iht. XSD: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingerognaeringsopplysningerresponse_v1_kompakt.xsd">skattemeldingerognaeringsopplysningerresponse_v1.xsd</a></li>
+<li>Eksempel XML: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xml/validerings_response.xml">validerings_response.xml</a></li>
+</ul>
+<p>skattemeldingerOgNaeringsopplysningerResponse:</p>
+<ul>
+<li>
+<p>Dokumenter – konvolutt for relevante dokumenter</p>
+<ul>
+<li>Dokument – complex type</li>
+<li>Type – kodeliste [skattemeldingEtterBeregning|naeringsopplysningerEtterBeregning|beregnetSkatt|summertSkattegrunnlagForVisning]</li>
+<li>Encoding – kodeliste – [utf-8]</li>
+<li>Content – serialisert dokumentinnhold</li>
+</ul>
+</li>
+<li>
+<p>avvikEtterBeregning – konvolutt for avvik funnet etter beregning</p>
+<ul>
+<li>avvik – complex type</li>
+<li>avvikstype – kodeliste [avvikNaeringsopplysninger| manglerNaeringsopplysninger|*]</li>
+<li>forekomstidentifikator – identifikator av felt i skattemeldingen</li>
+<li>mottattVerdi – verdien som ble sendt inn</li>
+<li>beregnetVerdi – verdien som ble beregnet</li>
+<li>avvikIVerdi – avviket mellom den innsendte verdien og den beregnede verdien</li>
+<li>sti – stien til elementet som har avvik</li>
+</ul>
+</li>
+<li>
+<p>avvikVedValidering – konvolutt for avvik funnet ved validering</p>
+<ul>
+<li>avvik – complex type</li>
+<li>avvikstype – kodeliste [*]</li>
+<li>forekomstidentifikator – identifikator av felt i skattemeldingen</li>
+<li>mottattVerdi – verdien som ble sendt inn</li>
+<li>beregnetVerdi – verdien som ble beregnet</li>
+<li>avvikIVerdi – avviket mellom den innsendte verdien og den beregnede verdien</li>
+<li>sti – stien til elementet som har avvik</li>
+</ul>
+</li>
+<li>
+<p>veiledningEtterKontroll – konvolutt for veiledninger</p>
+<ul>
+<li>veiledning – complex type</li>
+<li>veiledningstype – kodeliste [kontrollnavnet i SMIA, mulighetsrom kommer fra dem]</li>
+<li>forekomstidentifikator – identfikator til felt i skattemeldingen</li>
+<li>sti – stien til elementet med veiledning</li>
+</ul>
+</li>
+</ul>
 <h2 id="eiendom-api" style="position:relative"><a href="#eiendom-api" aria-label="eiendom api permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Eiendom API</h2>
 <p>Eiendom API tilbyr endepunkter for å søke opp eiendommer, hente eiendommeners formuesgrunnlag og for å beregne eiendommers markedsverdi.</p>
 <h3 id="søk" style="position:relative"><a href="#s%C3%B8k" aria-label="søk permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Søk</h3>
