@@ -68,11 +68,10 @@
 </ul>
 </li>
 </ol>
-<p>Skatteetaten har tilgjengeliggjort flere testapplikasjoner som viser hvordan trinnene beskrevet over kan utføres:</p>
+<p>Skatteetaten har tilgjengeliggjort en testapplikasjoner som viser hvordan trinnene beskrevet over kan utføres.
+Den er skrevet i <a href="https://jupyter.org/">jupyter notebook formatet</a>:</p>
 <ol>
-<li><a href="/skattemeldingen/5915fb336cfa379195e11ce501a29c6f/skattemelding-eksternt-api-test.zip">skattemelding-eksternt-api-test.zip</a> hent gjeldende skattemelding</li>
-<li><a href="/skattemeldingen/1a7b93e4f7ec61ad23fda8d91b35aaba/skattemelding-app-Altinn3-API.postman_collection.json">altinn 3 postmann collection</a></li>
-<li><a href="/skattemeldingen/7a3ac6d1da9703993ff258d5882b5b73/demo.ipynb">Jupyter notebook demo for henting, validering og innsending</a></li>
+<li><a href="/skattemeldingen/4fe42041cdcc819aff8efe1b558ebed3/demo.ipynb">Jupyter notebook demo for henting, validering og innsending</a></li>
 <li><a href="https://github.com/Skatteetaten/skattemeldingen/tree/master/docs/documentation/test/eksempler">Eksempel XML-er</a></li>
 </ol>
 <h2 id="ta-i-bruk-id-porten" style="position:relative"><a href="#ta-i-bruk-id-porten" aria-label="ta i bruk id porten permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ta i bruk ID-porten</h2>
@@ -108,16 +107,16 @@ Dersom det skulle ta for lang tid å få opprettet et kundeforhold hos DigDir ka
 <li>/authorize endpoint: <a href="https://oidc-ver2.difi.no/idporten-oidc-provider/authorize">https://oidc-ver2.difi.no/idporten-oidc-provider/authorize</a></li>
 <li>/token endpoint: <a href="https://oidc-ver2.difi.no/idporten-oidc-provider/token">https://oidc-ver2.difi.no/idporten-oidc-provider/token</a></li>
 </ul>
-<p>For detaljer rundt hvilken HTTP parametere som må sendes med i kallet, se filen hent.py: <a href="/skattemeldingen/5915fb336cfa379195e11ce501a29c6f/skattemelding-eksternt-api-test.zip">skattemelding-eksternt-api-test.zip</a></p>
+<p>For detaljer rundt hvilken HTTP parametere som må sendes med i kallet, se filen <a href="/skattemeldingen/4a54345355bae4fec7c592f38f0b24d2/hent.py">hent.py</a></p>
 <h2 id="kalle-skattemeldings-api" style="position:relative"><a href="#kalle-skattemeldings-api" aria-label="kalle skattemeldings api permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Kalle skattemeldings-API</h2>
-<p>Når callback-URL blir kalt må klienten plukke ut JWT-tokenet fra responsen og legge det i header-feltet Authorization og kalle skattemeldings-API. For detaljer, se filen hent.py: <a href="/skattemeldingen/5915fb336cfa379195e11ce501a29c6f/skattemelding-eksternt-api-test.zip">skattemelding-eksternt-api-test.zip</a></p>
+<p>Når callback-URL blir kalt må klienten plukke ut JWT-tokenet fra responsen og legge det i header-feltet Authorization og kalle skattemeldings-API. For detaljer, se <a href="/skattemeldingen/4fe42041cdcc819aff8efe1b558ebed3/demo.ipynb">demo klient</a></p>
 <p>URL til skattemeldings-API i test er: <a href="https://mp-test.sits.no/">https://mp-test.sits.no/</a></p>
 <p>Første testen bør være å teste at klienten når frem, dette kan gjøres ved å kalle ping tjenesten:</p>
 <ul>
 <li><code class="language-text">GET https://&lt;env&gt;/api/eksterntapi/formueinntekt/skattemelding/ping</code></li>
 <li><code class="language-text">Eksempel: GET https://mp-test.sits.no/api/eksterntapi/formueinntekt/skattemelding/ping</code></li>
 </ul>
-<p>For nærmere beskrivelse av skattemelding-API og Altinn3-API, se kapitelet <a href="/skattemeldingen/9b3de88bfae54ccb2eae53cfacec5edd/index.md">API</a></p>
+<p>For nærmere beskrivelse av skattemelding-API og Altinn3-API, se kapitelet <a href="/skattemeldingen/023b4be23c863836809e78e548d2e76a/index.md">API</a></p>
 <h1 id="se-skattemelding-i-portal" style="position:relative"><a href="#se-skattemelding-i-portal" aria-label="se skattemelding i portal permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Se skattemelding i portal</h1>
 <p>URL til portal: <a href="https://skatt-ref.sits.no/web/skattemeldingen/2020">https://skatt-ref.sits.no/web/skattemeldingen/2020</a></p>
 <p>Bruk MinID innlogging; fnr på testbruker, password01 og Pinkode 12345.</p>
