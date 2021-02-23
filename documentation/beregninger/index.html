@@ -186,53 +186,61 @@ Det er ikke laget DSL for kalkylen for personinntekt enda. Dette kommer senere. 
 <p>Beregning av de ulike feltene av personinntekt er beskrevet i seksjonenen nedenfor</p>
 <h3 id="sumskjermingsgrunnlagførgjeldsfradrag" style="position:relative"><a href="#sumskjermingsgrunnlagf%C3%B8rgjeldsfradrag" aria-label="sumskjermingsgrunnlagførgjeldsfradrag permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sumSkjermingsgrunnlagFørGjeldsfradrag</h3>
 <p>Hvis selskapstype = enkeltpersonforetak</p>
-<p>For samme identifikatorForFordelingAvNæringsinntektOgPersoninntekt:</p>
-<p>(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi + spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi) / 2</p>
-<p>for alle forekomster av skjermingsgrunnlagstype</p>
-<p>( saldogruppeA, saldogruppeB, saldogruppeC, saldogruppeC2, saldogruppeD, saldogruppeE, saldogruppeF, saldogruppeG, saldogruppeH, saldogruppeI, saldogruppeJ, lineaertavskrevetAnleggsmiddel, ikkeAvskrivbartAnleggsmiddel, ervervetImmatriellRettighet, aktivertForskningsOgUtvklingskostnad, varelager, kundefordring)</p>
-<ul>
-<li>(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi</li>
-<li>spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
-/2</li>
-</ul>
-<p>for alle forekomster av skjermingsgrunnlagstype = leverandoergjeld
-= sumSkjermingsgrunnlagFørGjeldsfradrag</p>
-<p>Sum skjermingsgrunnlag før gjeldsfradrag kan ikke bli negativt, dvs hvis leverandørgjeld er høyere enn sum av eiendelene skal skjermingsgrunnlag før gjeldsfradrag settes til null:</p>
-<p>sum av</p>
-<p>(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi</p>
-<ul>
-<li>spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
-/2</li>
-</ul>
-<p>for alle forekomster av skjermingsgrunnlagstype = leverandoergjeld &gt;=
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">For samme identifikatorForFordelingAvNæringsinntektOgPersoninntekt:
+
+(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi + spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi) / 2
+
+for alle forekomster av skjermingsgrunnlagstype
+
+( saldogruppeA, saldogruppeB, saldogruppeC, saldogruppeC2, saldogruppeD, saldogruppeE, saldogruppeF, saldogruppeG, saldogruppeH, saldogruppeI, saldogruppeJ, lineaertavskrevetAnleggsmiddel, ikkeAvskrivbartAnleggsmiddel, ervervetImmatriellRettighet, aktivertForskningsOgUtvklingskostnad, varelager, kundefordring)
+
+- (spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi
+
+* spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
+  /2
+
+for alle forekomster av skjermingsgrunnlagstype = leverandoergjeld
+= sumSkjermingsgrunnlagFørGjeldsfradrag
+
+Sum skjermingsgrunnlag før gjeldsfradrag kan ikke bli negativt, dvs hvis leverandørgjeld er høyere enn sum av eiendelene skal skjermingsgrunnlag før gjeldsfradrag settes til null:
+
 sum av
-(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi</p>
-<ul>
-<li>spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
-/2</li>
-</ul>
-<p>for alle forekomster av skjermingsgrunnlagstyper
+
+(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi
+
+- spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
+  /2
+
+for alle forekomster av skjermingsgrunnlagstype = leverandoergjeld &gt;=
+sum av
+(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi
+
+- spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
+  /2
+
+for alle forekomster av skjermingsgrunnlagstyper
 (= saldogruppeA, saldogruppeB, saldogruppeC, saldogruppeC2, saldogruppeD, saldogruppeE, saldogruppeF, saldogruppeG, saldogruppeH, saldogruppeI, saldogruppeJ, lineaertavskrevetAnleggsmiddel, ikkeAvskrivbartAnleggsmiddel, ervervetImmatriellRettighet, aktivertForskningsOgUtvklingskostnad, varelager, kundefordring)
-skal sumSkjermingsgrunnlagFørGjeldsfradrag = 0</p>
+skal sumSkjermingsgrunnlagFørGjeldsfradrag = 0</code></pre></div>
 <h3 id="sumskjermingsgrunnlagettergjeldsfradrag" style="position:relative"><a href="#sumskjermingsgrunnlagettergjeldsfradrag" aria-label="sumskjermingsgrunnlagettergjeldsfradrag permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>sumSkjermingsgrunnlagEtterGjeldsfradrag</h3>
-<p>sumSkjermingsgrunnlagFørGjeldsfradrag</p>
-<ul>
-<li>(spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi</li>
-<li>spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
-/ 2</li>
-</ul>
-<p>for alle forekomster av skjermingsgrunnlagstype = foretaksgjeld
-= sumSkjermingsgrunnlagEtterGjeldsfradrag</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sumSkjermingsgrunnlagFørGjeldsfradrag
+
+- (spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi
+
+* spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
+  / 2
+
+for alle forekomster av skjermingsgrunnlagstype = foretaksgjeld
+= sumSkjermingsgrunnlagEtterGjeldsfradrag</code></pre></div>
 <p>Skjermingsgrunnlag etter gjeldsfradrag kan ikke være negativt, dvs at foretaksgjeld ikke kan være høyere enn skjermingsgrunnlag før gjeldsfradrag. I så fall skal skjermingsgrunnlag etter gjeldsfradrag settes til null:</p>
-<p>Hvis
-sum av (spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi</p>
-<ul>
-<li>spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
-/ 2</li>
-</ul>
-<p>for alle forekomster av skjermingsgrunnlagstype = foretaksgjeld &gt;=
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Hvis
+sum av (spesifikasjonAvSkjermingsgrunnlag/inngaaendeVerdi
+
+- spesifikasjonAvSkjermingsgrunnlag/utgaaendeVerdi)
+  / 2
+
+for alle forekomster av skjermingsgrunnlagstype = foretaksgjeld &gt;=
 sumSkjermingsgrunnlagFørGjeldsfradrag
-skal sumSkjermingsgrunnlagEtterGjeldsfradrag = 0</p>
+skal sumSkjermingsgrunnlagEtterGjeldsfradrag = 0</code></pre></div>
 <h3 id="skjermingsfradrag" style="position:relative"><a href="#skjermingsfradrag" aria-label="skjermingsfradrag permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>skjermingsfradrag</h3>
 <p>sumSkjermingsgrunnlagEtterGjeldsfradrag</p>
 <ul>

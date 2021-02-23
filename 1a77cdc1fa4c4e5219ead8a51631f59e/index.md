@@ -141,9 +141,9 @@ skattemeldingerOgNaeringsopplysningerforespoerselResponse:
 ### Serialisert dokumentinnhold
 
 Det serialiserte dokumentinnholdet er skattemelding eller næringsopplysninger i base64 encodet mime format.
-Dette er formattert i henhold til https://tools.ietf.org/html/rfc2045#section-6.8 som har et linjeskift ette 76 karakterer. Vi støtter også lange
+Dette er formattert i henhold til https://tools.ietf.org/html/rfc2045#section-6.8 som har et linjeskift etter 76 karakterer. Vi støtter også lange
 linjer med base64 encodet innhold, men det er enklere å håndtere mime-formatert tekst når det er mime - encodet.
-Respnsen fra skatteetaten vil alltid inneholde base 64 som er formatert på denne måten.
+Responsen fra Skatteetaten vil alltid inneholde base 64 som er formatert på denne måten.
 
 Eksempel:
 
