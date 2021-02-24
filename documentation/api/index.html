@@ -877,7 +877,13 @@ Beskrivelse av felt i XML-en følger her:</p>
 <p>Plukk ut <em>id</em> fra responsen til &quot;Opprett en instans i Altinn&quot;-kallet og bruk det på slutten av url-en under.
 (ved ved en hvilken som helst xml-fil).</p>
 <p><code class="language-text">curl --location --request POST &#x27;https://skd.apps.tt02.altinn.no/skd/sirius-skattemelding-v1/instances/50028539/82652921-88e4-47d9-9551-b9da483e86c2/data?dataType=skattemelding&#x27; \ --header &#x27;Content-Disposition: attachment; filename=skattemelding.xml&#x27; \ --header &#x27;Content-Type: text/xml&#x27; \ --header &#x27;Authorization: Bearer &lt;Altinn token&gt;&#x27; \ --data-binary &#x27;@/home/k83452/Documents/Altinn3/Testfiler/Eksempel1_skattemeldingen_v06..xml&#x27;</code></p>
-<p><strong>Body :</strong> <code class="language-text">data-binary &#x27;../skattemelding.xml&#x27;. Filen skattemelding.xml skal være på samme format som responsen fra tjenesten &quot;Hent Skattemelding&quot;.</code></p>
+<p><strong>Body :</strong> <code class="language-text">data-binary &#x27;../skattemelding.xml&#x27;.</code>
+Innholdet i filen skattemelding.xml skal være på format:</p>
+<ul>
+<li>Iht. XSD: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xsd/skattemeldingerognaeringsopplysningerequest_v1_kompakt.xsd">skattemeldingerognaeringsopplysningerequest_v1.xsd</a></li>
+<li>Eksempel XML: <a href="https://github.com/Skatteetaten/skattemeldingen/blob/master/docs/documentation/informasjonsmodell/xml/validerings_request.xml">validerings_request.xml</a></li>
+</ul>
+<p>Merk at det er samme format som benyttes ved kall til valideringstjensten.</p>
 <p><strong>Respons :</strong> <code class="language-text">Respons vil inneholde metadata om objektet som ble opprettet. En unik identifikator (id) vil bli retunert som seinere kan brukes til å oppdatere, sjekke status etc..</code></p>
 <br/>
 <h2 id="trigge-prosessnext-for-å-få-prosessen-til-status-bekreftelse" style="position:relative"><a href="#trigge-prosessnext-for-%C3%A5-f%C3%A5-prosessen-til-status-bekreftelse" aria-label="trigge prosessnext for å få prosessen til status bekreftelse permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Trigge prosess/next for å få prosessen til status <em>Bekreftelse</em></h2>
