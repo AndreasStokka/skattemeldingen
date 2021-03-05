@@ -877,7 +877,7 @@ Beskrivelse av felt i XML-en følger her:</p>
 <p>Neste trinn er å laste opp skattemeldingsdata.</p>
 <p>Plukk ut <em>id</em> fra responsen til &quot;Opprett en instans i Altinn&quot;-kallet og bruk det på slutten av url-en under.
 (ved ved en hvilken som helst xml-fil).</p>
-<p><code class="language-text">curl --location --request POST &#x27;https://skd.apps.tt02.altinn.no/skd/sirius-skattemelding-v1/instances/50028539/82652921-88e4-47d9-9551-b9da483e86c2/data?dataType=skattemelding&#x27; \ --header &#x27;Content-Disposition: attachment; filename=skattemelding.xml&#x27; \ --header &#x27;Content-Type: text/xml&#x27; \ --header &#x27;Authorization: Bearer &lt;Altinn token&gt;&#x27; \ --data-binary &#x27;@/home/k83452/Documents/Altinn3/Testfiler/Eksempel1_skattemeldingen_v06..xml&#x27;</code></p>
+<p><code class="language-text">curl --location --request POST &#x27;https://skd.apps.tt02.altinn.no/skd/sirius-skattemelding-v1/instances/50028539/82652921-88e4-47d9-9551-b9da483e86c2/data?dataType=tilbakemelding&#x27; \ --header &#x27;Content-Disposition: attachment; filename=skattemelding.xml&#x27; \ --header &#x27;Content-Type: text/xml&#x27; \ --header &#x27;Authorization: Bearer &lt;Altinn token&gt;&#x27; \ --data-binary &#x27;@/home/k83452/Documents/Altinn3/Testfiler/Eksempel1_skattemeldingen_v06..xml&#x27;</code></p>
 <p><strong>Body :</strong> <code class="language-text">data-binary &#x27;../skattemelding.xml&#x27;.</code>
 Innholdet i filen skattemelding.xml skal være på format:</p>
 <ul>
@@ -905,7 +905,7 @@ Kvitteringen (xml-fil) kan lastes ned ved å:</p>
 <p>hente ut instans-data: <code class="language-text">curl --location --request GET &#x27;https://skd.apps.tt02.altinn.no/skd/sirius-skattemelding-v1/instances/50006869/060d4d74-dbb9-4ba3-a7d2-968e9b6e31ed&#x27; \ --header &#x27;Authorization: Bearer &lt;altinn Token&gt;&#x27;</code></p>
 <p>Les mer om det hos Altinn <a href="https://docs.altinn.studio/teknologi/altinnstudio/altinn-api/app-api/instances/#get-instance">get-instance</a></p>
 </li>
-<li>plukke ut id-en til vedlegget &#x27;tilbakemelding&#x27; fra payloaden i #1 (data --&gt; dataType=skattemelding).</li>
+<li>plukke ut id-en til vedlegget &#x27;tilbakemelding&#x27; fra payloaden i #1 (data --&gt; dataType=tilbakemelding).</li>
 <li>
 <p>bruke Id-en fra #2 og kalle følgende API for å hente ut tilbakemeldingen: <code class="language-text">curl --location --request GET &#x27;https://skd.apps.tt02.altinn.no/{{appId}}/instances/50006869/060d4d74-dbb9-4ba3-a7d2-968e9b6e31ed/data/&lt;ID til vedlegget&gt;&#x27; \ --header &#x27;Authorization: Bearer &lt;altinn Token&gt;&#x27;</code></p>
 <p>Les mer om det hos Altinn <a href="https://docs.altinn.studio/teknologi/altinnstudio/altinn-api/app-api/data-elements/#get-data">get-data</a></p>
