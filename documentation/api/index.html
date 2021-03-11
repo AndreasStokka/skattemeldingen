@@ -878,6 +878,12 @@ Beskrivelse av felt i XML-en følger her:</p>
 <p>Plukk ut <em>id</em> fra responsen til &quot;Opprett en instans i Altinn&quot;-kallet og bruk det på slutten av url-en under.
 (ved ved en hvilken som helst xml-fil).</p>
 <p><code class="language-text">curl --location --request POST &#x27;https://skd.apps.tt02.altinn.no/skd/sirius-skattemelding-v1/instances/50028539/82652921-88e4-47d9-9551-b9da483e86c2/data?dataType=tilbakemelding&#x27; \ --header &#x27;Content-Disposition: attachment; filename=skattemelding.xml&#x27; \ --header &#x27;Content-Type: text/xml&#x27; \ --header &#x27;Authorization: Bearer &lt;Altinn token&gt;&#x27; \ --data-binary &#x27;@/home/k83452/Documents/Altinn3/Testfiler/Eksempel1_skattemeldingen_v06..xml&#x27;</code></p>
+<p><strong>Merk</strong> følgende i curl-kommandoen over:</p>
+<ul>
+<li>content-type skal være <strong>text/xml</strong> (i dokumetasjonen hos altinn3 står det at content-type skal være application/xml, det er feil)</li>
+<li>Content-Disposition skal være <strong>attachment; filename=skattemelding.xml</strong> (skattemelding.xml skal ikke ha double quotes. Dette vil gi feil: filename=&quot;skattemelding.xml&quot;).</li>
+</ul>
+<p>&#x27;Content-Disposition: attachment; filename=skattemelding.xml&#x27; \</p>
 <p><strong>Body :</strong> <code class="language-text">data-binary &#x27;../skattemelding.xml&#x27;.</code>
 Innholdet i filen skattemelding.xml skal være på format:</p>
 <ul>
