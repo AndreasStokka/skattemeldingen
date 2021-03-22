@@ -310,9 +310,9 @@ Uansett versjon vil skatteetaten ikke lagre eller følge opp informasjonen som s
 <p>Oversikt over hvilke eiendommer dere kan søke opp ligger i <a href="/skattemeldingen/829e13e05d8c2b01a803dd91d3c31916/Syntetiske_eiendommer.xlsx">dette regnearket</a></p>
 <h3 id="søk" style="position:relative"><a href="#s%C3%B8k" aria-label="søk permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Søk</h3>
 <p>Det er mulig å søke på alle norske vegadresser, matrikkelnummer og boligselskap (organisasjonsnummer og andelsnr/aksjeboenhetsnr)</p>
-<p><strong>URL</strong> : <code class="language-text">GET https://&lt;env&gt;/api/formueinntekt/eiendom/soek/&lt;inntektsår&gt;?query=&lt;tekst&gt;</code></p>
-<p><strong>Eksempel URL vegadress</strong> : <code class="language-text">GET https://mp-test.sits.no/api/formueinntekt/eiendom/soek/2020?query=Storgata 1</code></p>
-<p><strong>Eksempel URL matrikkelnummer</strong> : <code class="language-text">GET https://mp-test.sits.no/api/formueinntekt/eiendom/soek/2020?query=36/120</code></p>
+<p><strong>URL</strong> : <code class="language-text">GET https://&lt;env&gt;/api/eksterntapi/formueinntekt/eiendom/soek/&lt;inntektsår&gt;?query=&lt;tekst&gt;</code></p>
+<p><strong>Eksempel URL vegadress</strong> : <code class="language-text">GET https://mp-test.sits.no/api/eksterntapi/formueinntekt/eiendom/soek/2020?query=Storgata 1</code></p>
+<p><strong>Eksempel URL matrikkelnummer</strong> : <code class="language-text">GET https://mp-test.sits.no/api/eksterntapi/formueinntekt/eiendom/soek/2020?query=36/120</code></p>
 <p><strong>Forespørsel</strong> :</p>
 <ul>
 <li><code class="language-text">&lt;env&gt;: Miljøspesifikk adresse.</code></li>
@@ -387,7 +387,7 @@ Uansett versjon vil skatteetaten ikke lagre eller følge opp informasjonen som s
 <p>Hent formuesgrunnlag for valgt unik eiendomsidentifikator og inntektsår.</p>
 <p>Merk at hvilken informasjon responsen vil inneholde avhenger av valgt inntektsår, og at formuesopplysninger vil variere basert på hvilken eiendomstype eiendomsidentifikator har. Noen detaljer vil fjernes fra responsen hvis skatteyter ikke er eier av eiendommen.</p>
 <p><strong>URL</strong> : <code class="language-text">GET https://&lt;env&gt;/formueinntekt/eiendom/formuesgrunnlag/&lt;inntektsår&gt;/&lt;eiendomsidentifikator&gt;/&lt;identifikator&gt;</code></p>
-<p><strong>Eksempel URL</strong> : <code class="language-text">GET https://mp-test.sits.no/api/formueinntekt/eiendom/formuesgrunnlag/2020/1/02095300173</code></p>
+<p><strong>Eksempel URL</strong> : <code class="language-text">GET https://mp-test.sits.no/api/eksterntapi/formueinntekt/eiendom/formuesgrunnlag/2020/1/02095300173</code></p>
 <p><strong>Forespørsel</strong> :</p>
 <ul>
 <li><code class="language-text">&lt;env&gt;: Miljøspesifikk adresse.</code></li>
@@ -464,7 +464,7 @@ Uansett versjon vil skatteetaten ikke lagre eller følge opp informasjonen som s
 <p>Det er også mulig å oppgi dokumentert markedsverdi. Gyldig verdi skal være under klagegrense. Ugyldig dokumntert markedsverdi vil ikke hensyntas.</p>
 <p>Sender man inn hele responsen fra hent formuesgrunnlag vil responsen på beregn innholde alt som ble sendt inn pluss de beregnede feltene.</p>
 <p><strong>URL</strong> : <code class="language-text">POST https://&lt;env&gt;/formueinntekt/eiendom/markedsverdi/bolig/&lt;inntektsår&gt;/&lt;eiendomsidentifikator&gt;</code></p>
-<p><strong>Eksempel URL</strong> : <code class="language-text">POST https://mp-test.sits.no/api/formueinntekt/eiendom/markedsverdi/bolig/2020/1</code></p>
+<p><strong>Eksempel URL</strong> : <code class="language-text">POST https://mp-test.sits.no/api/eksterntapi/formueinntekt/eiendom/markedsverdi/bolig/2020/1</code></p>
 <p><strong>Forespørsel</strong> :</p>
 <ul>
 <li><code class="language-text">&lt;env&gt;: Miljøspesifikk adresse.</code></li>
@@ -601,7 +601,7 @@ Uansett versjon vil skatteetaten ikke lagre eller følge opp informasjonen som s
 <p>Det er også mulig å oppgi dokumentert markedsverdi. Gyldig verdi skal være under klagegrense. Ugyldig dokumntert markedsverdi vil ikke hensyntas.</p>
 <p>Sender man inn hele responsen fra hent formuesgrunnlag vil responsen på beregn innholde alt som ble sendt inn pluss de beregnede feltene.</p>
 <p><strong>URL</strong> : <code class="language-text">POST https://&lt;env&gt;/formueinntekt/eiendom/markedsverdi/flerbolig/&lt;inntektsår&gt;/&lt;eiendomsidentifikator&gt;</code></p>
-<p><strong>Eksempel URL</strong> : <code class="language-text">POST https://mp-test.sits.no/api/formueinntekt/eiendom/markedsverdi/bolig/2020/102</code></p>
+<p><strong>Eksempel URL</strong> : <code class="language-text">POST https://mp-test.sits.no/api/eksterntapi/formueinntekt/eiendom/markedsverdi/bolig/2020/102</code></p>
 <p><strong>Forespørsel</strong> :</p>
 <ul>
 <li><code class="language-text">&lt;env&gt;: Miljøspesifikk adresse.</code></li>
